@@ -32,3 +32,9 @@
    ```
    go test
    ```
+
+## GitHub Actions Workflow for Running Tests on Push Events
+
+This repository includes a GitHub Actions workflow that runs tests automatically whenever a push event occurs. The workflow file is located in the `.github/workflows` directory.
+
+To view or modify the workflow, navigate to the `.github/workflows/test.yml` file.
