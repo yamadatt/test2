@@ -3,6 +3,8 @@ package main
 import (
 	"os"
 	"testing"
+	"bytes"
+	"io"
 )
 
 func TestMain(t *testing.T) {
