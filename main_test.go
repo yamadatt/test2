@@ -1,11 +1,13 @@
 package main
 
 import (
+	"strings"
 	"testing"
-	"strconv"
-	"os"
+
+	//	"strconv"
 	"bytes"
 	"io"
+	"os"
 )
 
 func TestMain(t *testing.T) {
@@ -31,12 +33,20 @@ func TestMain(t *testing.T) {
 
 func captureOutput(f func()) string {
 	r, w, _ := os.Pipe()
+	stdout := os.Stdout
 	os.Stdout = w
 
-	f()
+	outC := make(chan string)
+	go func() {
+		var buf bytes.Buffer
+		io.Copy(&buf, r)
+		outC <- buf.String()
+	}()
 
+	f()
 	w.Close()
-	var buf bytes.Buffer
-	io.Copy(&buf, r)
-	return buf.String()
+	os.Stdout = stdout
+	out := <-outC
+
+	return strings.TrimSpace(out)
 }
