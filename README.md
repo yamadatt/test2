@@ -17,3 +17,11 @@ Replace `<num1>` and `<num2>` with the two numbers you want to add.
 $ go run main.go 3 5
 8
 ```
+
+## Testing
+
+To run the tests, use the following command:
+
+```
+go test
+```
