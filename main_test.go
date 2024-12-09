@@ -13,11 +13,11 @@ func TestMain(t *testing.T) {
 		args     []string
 		expected string
 	}{
-		{[]string{"main.go", "3", "5"}, "8"},
-		{[]string{"main.go", "10", "20"}, "30"},
-		{[]string{"main.go", "0", "0"}, "0"},
-		{[]string{"main.go", "a", "b"}, "Both arguments must be integers."},
-		{[]string{"main.go", "1"}, "Usage: go run main.go <num1> <num2>"},
+		{[]string{"main.go", "3", "5"}, "8\n"},
+		{[]string{"main.go", "10", "20"}, "30\n"},
+		{[]string{"main.go", "0", "0"}, "0\n"},
+		{[]string{"main.go", "a", "b"}, "Both arguments must be integers.\n"},
+		{[]string{"main.go", "1"}, "Usage: go run main.go <num1> <num2>\n"},
 	}
 
 	for _, test := range tests {
@@ -31,11 +31,13 @@ func TestMain(t *testing.T) {
 
 func captureOutput(f func()) string {
 	r, w, _ := os.Pipe()
+	stdout := os.Stdout
 	os.Stdout = w
 
 	f()
 
 	w.Close()
+	os.Stdout = stdout
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
 	return buf.String()
