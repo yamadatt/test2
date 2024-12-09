@@ -18,3 +18,9 @@ To run the unit tests for the Golang application, use the following command:
 ```sh
 go test
 ```
+
+## Continuous Integration
+
+This project uses GitHub Actions for continuous integration. Unit tests are automatically executed on every push to the repository.
+
+To view the CI results, go to the "Actions" tab of the repository on GitHub.
