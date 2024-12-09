@@ -25,3 +25,7 @@ To run the tests, use the following command:
 ```
 go test
 ```
+
+## Continuous Integration
+
+The tests are automatically run on push using GitHub Actions.
