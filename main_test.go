@@ -3,6 +3,9 @@ package main
 import (
 	"strconv"
 	"testing"
+	"os"
+	"bytes"
+	"io"
 )
 
 func TestMain(t *testing.T) {
@@ -12,9 +15,9 @@ func TestMain(t *testing.T) {
 		want      string
 		expectErr bool
 	}{
-		{"ValidArgs", []string{"main.go", "2", "3"}, "Sum: 5\n", false},
-		{"InvalidArgs", []string{"main.go", "a", "3"}, "Both arguments must be integers.\n", true},
-		{"MissingArgs", []string{"main.go", "2"}, "Usage: go run main.go <arg1> <arg2>\n", true},
+			{"ValidArgs", []string{"main.go", "2", "3"}, "Sum: 5\n", false},
+			{"InvalidArgs", []string{"main.go", "a", "3"}, "Both arguments must be integers.\n", true},
+			{"MissingArgs", []string{"main.go", "2"}, "Usage: go run main.go <arg1> <arg2>\n", true},
 	}
 
 	for _, tt := range tests {
